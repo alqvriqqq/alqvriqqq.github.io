@@ -50,3 +50,6 @@ pre {
     word-wrap: break-word;
     overflow: auto;
 }
+#downloadLink {
+    margin-top: 20px;
+}
