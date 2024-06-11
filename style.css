@@ -15,7 +15,7 @@ body {
 h2 {
     margin-top: 0;
 }
-input[type="file"], textarea {
+input[type="file"], textarea, input[type="text"] {
     width: 100%;
     margin-bottom: 10px;
     padding: 10px;
