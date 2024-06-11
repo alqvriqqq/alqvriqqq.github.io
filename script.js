@@ -2,30 +2,23 @@ function upload() {
     var fileInput = document.getElementById('fileInput');
     var file = fileInput.files[0];
     var textInput = document.getElementById('textInput');
-    var formData = new FormData();
+    var content = '';
 
     if (file) {
-        formData.append('file', file);
+        var reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = function() {
+            content = reader.result;
+            displayRawContent(content);
+        };
     } else {
-        var textBlob = new Blob([textInput.value], { type: 'text/plain' });
-        formData.append('file', textBlob, 'text.txt');
+        content = textInput.value;
+        displayRawContent(content);
     }
+}
 
-    fetch('/upload', {
-        method: 'POST',
-        body: formData
-    }).then(response => response.json())
-      .then(data => {
-          if (data.success) {
-              document.getElementById('message').textContent = 'File uploaded successfully!';
-              document.getElementById('rawText').textContent = data.content;
-              document.getElementById('rawContent').style.display = 'block';
-          } else {
-              document.getElementById('message').textContent = 'Error uploading file';
-          }
-      })
-      .catch(error => {
-          console.error('Error:', error);
-          document.getElementById('message').textContent = 'Error uploading file';
-      });
+function displayRawContent(content) {
+    document.getElementById('rawText').textContent = content;
+    document.getElementById('message').textContent = 'Raw content displayed below:';
+    document.getElementById('rawContent').style.display = 'block';
 }
