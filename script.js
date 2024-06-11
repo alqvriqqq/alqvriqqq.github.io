@@ -3,6 +3,7 @@ function upload() {
     var file = fileInput.files[0];
     var textInput = document.getElementById('textInput');
     var content = '';
+
     if (file) {
         var reader = new FileReader();
         reader.readAsText(file);
