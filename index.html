@@ -9,6 +9,7 @@
         <h2>Upload a .txt or .lua file or Enter Text</h2>
         <input type="file" id="fileInput" accept=".txt,.lua" onchange="displayFileContent()">
         <textarea id="textInput" rows="4" placeholder="Enter text"></textarea><br>
+        <input type="text" id="fileName" placeholder="Enter file name (without extension)"><br>
         <button onclick="upload()">Upload</button>
         <div id="message"></div>
         <div id="rawContent" style="display: none;">
